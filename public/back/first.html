@@ -54,6 +54,28 @@
             <li><a > 分类管理 </a></li>
             <li class="active">一级分类</li>
         </ol>
+        <div class="lt_content">
+            <button class="btn btn-default">添加分类</button>
+            <table class="table table-bordered table-hover mt_20">
+                <thead>
+                <tr>
+                    <th width="20%">序号</th>
+                    <th width="80%">一级分类名</th>
+                </tr>
+                </thead>
+                <tbody>
+                 <!--挖个坑-->
+                </tbody>
+            </table>
+
+            <!--分页插件容器-->
+            <div class="text-right">
+                <ul id="Paginator"></ul>
+            </div>
+
+
+
+        </div>
     </div>
 </div>
 
@@ -77,11 +99,22 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<script type="text/html" id="tpl">
+    {{each rows v i}}
+    <tr>
+        <td>{{ i + 1 + (page -1) * size}}</td>
+        <td>{{ v.categoryName}}</td>
+    </tr>
+    {{ /each }}
+</script>
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"> </script>
 <script src="./js/common.js"></script>
-<script src="./js/index.js"></script>
+<script src="./js/first.js"></script>
+
 </body>
 </html>
