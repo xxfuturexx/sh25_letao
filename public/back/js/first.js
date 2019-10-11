@@ -28,7 +28,54 @@ $(function(){
                     }
                 })
 
+
             }
         })
     }
+
+    //3.添加分类模态框
+    $('#addBtn').click(function(){
+        $('#addModal').modal('show');
+    })
+
+    //4.添加表单校验插件
+    $('#form').bootstrapValidator({
+        // 配置校验图标
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',    // 校验成功
+            invalid: 'glyphicon glyphicon-remove',  // 校验失败
+            validating: 'glyphicon glyphicon-refresh' // 校验中
+        },
+        fields:{
+            categoryName:{
+                validators: {
+                    notEmpty:{
+                        message:"请输入一级分类"
+                    }
+                }
+            }
+        }
+
+    })
+
+
+    //5.添加表单校验成功事件
+    $('#form').on("success.form.bv",function( e ){
+        e.preventDefault();
+        $.ajax({
+            type:"post",
+            url:"/category/addTopCategory",
+            data: $('#form').serialize(),
+            dataType:"json",
+            success:function( info ){
+                console.log( info );
+                if( info.success ){
+                    $('#addModal').modal('hide');
+                    render();
+                    $('#form').data('bootstrapValidator').resetForm(true);
+                }
+            }
+        })
+
+    })
 });
